@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Person, Planet, ServerPaginationResponse } from './people'
+import { Person, Planet, ServerPaginationResponse } from './data'
 
 @Injectable({
   providedIn: 'root',
 })
-export class PeopleProvider {
+export class DataProvider {
   constructor(private readonly http: HttpClient) {}
   getPeople(page: number) {
     return this.http.get<ServerPaginationResponse<Person>>(

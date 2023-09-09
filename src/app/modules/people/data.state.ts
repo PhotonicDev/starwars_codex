@@ -1,19 +1,19 @@
 import { State, Action, Selector, createSelector } from '@ngxs/store'
-import { GetPeople, GetPerson, GetPlanet } from './people.actions'
+import { GetPeople, GetPerson, GetPlanet } from './data.actions'
 import {
   Collection,
-  PeopleContext,
-  PeopleModel,
+  DataContext,
+  DataModel,
   Person,
   Planet,
   normalize,
-} from './people'
+} from './data'
 import { Injectable } from '@angular/core'
-import { PeopleProvider } from './people.provider'
+import { DataProvider } from './data.provider'
 import { tap } from 'rxjs/operators'
 
-@State<PeopleModel>({
-  name: 'peopleModel',
+@State<DataModel>({
+  name: 'dataModel',
   defaults: {
     people: {} as Collection<Person>,
     planets: {} as Collection<Planet>,
@@ -21,32 +21,32 @@ import { tap } from 'rxjs/operators'
   },
 })
 @Injectable()
-export class PeopleState {
+export class DataState {
   @Selector()
-  static people(state: PeopleModel) {
+  static people(state: DataModel) {
     return Object.values(state.people) as Person[]
   }
   @Selector()
-  static planets(state: PeopleModel) {
+  static planets(state: DataModel) {
     return Object.values(state.planets) as Planet[]
   }
   @Selector()
-  static currentPage(state: PeopleModel) {
+  static currentPage(state: DataModel) {
     return state.pageLoaded
   }
   static personById(uid: string) {
-    return createSelector([PeopleState.people], people =>
+    return createSelector([DataState.people], people =>
       people.find(person => person.uid === uid)
     )
   }
   static planetById(uid: string) {
-    return createSelector([PeopleState.planets], planets =>
+    return createSelector([DataState.planets], planets =>
       planets.find(planet => planet.uid === uid)
     )
   }
-  constructor(private readonly provider: PeopleProvider) {}
+  constructor(private readonly provider: DataProvider) {}
   @Action(GetPeople)
-  getPeople(ctx: PeopleContext, { page }: GetPeople) {
+  getPeople(ctx: DataContext, { page }: GetPeople) {
     if (page === ctx.getState().pageLoaded) {
       return
     }
@@ -61,7 +61,7 @@ export class PeopleState {
     )
   }
   @Action(GetPerson)
-  getPerson(ctx: PeopleContext, { uid }: GetPerson) {
+  getPerson(ctx: DataContext, { uid }: GetPerson) {
     if ((ctx.getState().people as any)[uid]?.properties) {
       return
     }
@@ -78,7 +78,7 @@ export class PeopleState {
     )
   }
   @Action(GetPlanet)
-  getPlanet(ctx: PeopleContext, { uid }: GetPlanet) {
+  getPlanet(ctx: DataContext, { uid }: GetPlanet) {
     if ((ctx.getState().people as any)[uid]?.properties) {
       return
     }

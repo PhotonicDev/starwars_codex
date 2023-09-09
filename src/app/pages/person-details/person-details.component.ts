@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { ActivatedRoute, RouterModule } from '@angular/router'
 import { filter, map, switchMap } from 'rxjs/operators'
-import { PeopleState } from 'src/app/modules/people/people.state'
+import { DataState } from 'src/app/modules/people/data.state'
 
 @Component({
   standalone: true,
@@ -18,7 +18,7 @@ export class PersonDetailsComponent implements OnInit {
   person$ = this.activatedRoute.paramMap.pipe(
     map(params => params.get('uid')),
     filter(Boolean),
-    switchMap((uid: string) => this.store.select(PeopleState.personById(uid)))
+    switchMap((uid: string) => this.store.select(DataState.personById(uid)))
   )
   constructor(
     private readonly activatedRoute: ActivatedRoute,

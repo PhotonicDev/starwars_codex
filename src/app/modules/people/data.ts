@@ -1,12 +1,12 @@
 import { StateContext } from '@ngxs/store'
 
-export interface PeopleModel {
+export interface DataModel {
   people: Collection<Person>
   planets: Collection<Planet>
   pageLoaded: number
 }
 
-export type PeopleContext = StateContext<PeopleModel>
+export type DataContext = StateContext<DataModel>
 
 export interface PersonProperties {
   height: string

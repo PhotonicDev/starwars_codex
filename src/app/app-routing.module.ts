@@ -7,11 +7,7 @@ import {
 } from '@angular/router'
 import { PeopleListComponent } from './pages/people-list/people-list.component'
 import { Store } from '@ngxs/store'
-import {
-  GetPeople,
-  GetPerson,
-  GetPlanet,
-} from './modules/people/people.actions'
+import { GetPeople, GetPerson, GetPlanet } from './modules/people/data.actions'
 import { PersonDetailsComponent } from './pages/person-details/person-details.component'
 import { PlanetDetailsComponent } from './pages/planet-details/planet-details.component'
 

@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { ActivatedRoute, RouterModule } from '@angular/router'
 import { filter, map, switchMap } from 'rxjs/operators'
-import { PeopleState } from 'src/app/modules/people/people.state'
+import { DataState } from 'src/app/modules/people/data.state'
 import { Location } from '@angular/common'
 
 @Component({
@@ -19,7 +19,7 @@ export class PlanetDetailsComponent implements OnInit {
   planet$ = this.activatedRoute.paramMap.pipe(
     map(params => params.get('planet_uid')),
     filter(Boolean),
-    switchMap((uid: string) => this.store.select(PeopleState.planetById(uid)))
+    switchMap((uid: string) => this.store.select(DataState.planetById(uid)))
   )
   constructor(
     private readonly location: Location,

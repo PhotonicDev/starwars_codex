@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
 import { Store } from '@ngxs/store'
-import { PeopleState } from 'src/app/modules/people/people.state'
+import { DataState } from 'src/app/modules/people/data.state'
 import { MatListModule } from '@angular/material/list'
 import { MatButtonModule } from '@angular/material/button'
 import { Observable, first } from 'rxjs'
-import { Person } from 'src/app/modules/people/people'
+import { Person } from 'src/app/modules/people/data'
 import { RouterModule } from '@angular/router'
-import { GetPeople } from 'src/app/modules/people/people.actions'
+import { GetPeople } from 'src/app/modules/people/data.actions'
 
 @Component({
   standalone: true,
@@ -17,8 +17,8 @@ import { GetPeople } from 'src/app/modules/people/people.actions'
   imports: [CommonModule, MatListModule, RouterModule, MatButtonModule],
 })
 export class PeopleListComponent {
-  people$: Observable<Person[]> = this.store.select(PeopleState.people)
-  currentPage$: Observable<number> = this.store.select(PeopleState.currentPage)
+  people$: Observable<Person[]> = this.store.select(DataState.people)
+  currentPage$: Observable<number> = this.store.select(DataState.currentPage)
   constructor(private readonly store: Store) {}
   loadMoreItems() {
     this.currentPage$.pipe(first()).subscribe(page => {
