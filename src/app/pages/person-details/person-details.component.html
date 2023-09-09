@@ -12,5 +12,19 @@
   <div>Mass: {{ person?.properties?.mass }}</div>
   <div>Hair color: {{ person?.properties?.hair_color }}</div>
   <div>Skin color: {{ person?.properties?.skin_color }}</div>
-  <a>Homeworld </a>{{ person?.properties?.homeworld }}
+  <div>Eye color: {{ person?.properties?.eye_color }}</div>
+  <div>Birth year: {{ person?.properties?.birth_year }}</div>
+  <div>Gender: {{ person?.properties?.gender }}</div>
+  <div>Created: {{ person?.properties?.created | date }}</div>
+  <div>Edited: {{ person?.properties?.edited | date }}</div>
+  <a
+    [routerLink]="[
+      '/',
+      'person',
+      person.uid,
+      'planet',
+      person.properties.homeworld.split('/')[5]
+    ]"
+    >Homeworld
+  </a>
 </div>

@@ -2,6 +2,7 @@ import { StateContext } from '@ngxs/store'
 
 export interface PeopleModel {
   people: Collection<Person>
+  planets: Collection<Planet>
   pageLoaded: number
 }
 
@@ -22,8 +23,27 @@ export interface PersonProperties {
   url: string
 }
 
-export interface Person {
-  properties: PersonProperties
+export type Person = Entity<PersonProperties>
+
+export interface PlanetProperties {
+  diameter: string
+  rotation_period: string
+  orbital_period: string
+  gravity: string
+  population: string
+  climate: string
+  terrain: string
+  surface_water: string
+  created: string
+  edited: string
+  name: string
+  url: string
+}
+
+export type Planet = Entity<PlanetProperties>
+
+export interface Entity<T> {
+  properties: T
   description: string
   uid: string
   name: string

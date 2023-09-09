@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Person, ServerPaginationResponse } from './people'
+import { Person, Planet, ServerPaginationResponse } from './people'
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +15,11 @@ export class PeopleProvider {
   getPerson(uid: number) {
     return this.http.get<{ result: Person }>(
       `https://www.swapi.tech/api/people/${uid}`
+    )
+  }
+  getPlanet(uid: number) {
+    return this.http.get<{ result: Planet }>(
+      `https://www.swapi.tech/api/planets/${uid}`
     )
   }
 }

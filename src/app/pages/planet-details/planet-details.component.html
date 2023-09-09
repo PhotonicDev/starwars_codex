@@ -1,0 +1,21 @@
+<button mat-icon-button (click)="goBack()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<div *ngIf="planet$ | async as planet" class="push">
+  <h1>
+    {{ planet?.properties?.name }}
+  </h1>
+  <b>Properties:</b>
+  <div>ID: {{ planet.uid }}</div>
+  <div>Diameter: {{ planet?.properties?.diameter }}</div>
+  <div>Rotation period: {{ planet?.properties?.rotation_period }}</div>
+  <div>Orbital period: {{ planet?.properties?.orbital_period }}</div>
+  <div>Gravity: {{ planet?.properties?.gravity }}</div>
+  <div>Population: {{ planet?.properties?.population }}</div>
+  <div>Climate: {{ planet?.properties?.climate }}</div>
+  <div>Terrain: {{ planet?.properties?.terrain }}</div>
+  <div>Surface water: {{ planet?.properties?.surface_water }}</div>
+  <div>Created: {{ planet?.properties?.created | date }}</div>
+  <div>Edited: {{ planet?.properties?.edited | date }}</div>
+</div>
