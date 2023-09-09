@@ -1,0 +1,10 @@
+<mat-action-list>
+  <button
+    mat-list-item
+    *ngFor="let person of people$ | async"
+    [routerLink]="['/', person.uid]"
+  >
+    {{ person.name }}
+  </button>
+</mat-action-list>
+<button mat-raised-button>Load more items</button>
