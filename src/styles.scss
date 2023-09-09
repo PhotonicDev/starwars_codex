@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+$spacing-sizes: (
+  '-xxl': 56px,
+  '-xl': 48px,
+  '-lg': 32px,
+  '-md': 24px,
+  '-sm': 8px,
+  '-xs': 4px,
+  '-none': 0,
+  '': 16px,
+);
+$directions: '-left', '-right', '-top', '-bottom', '';
+@each $size, $value in $spacing-sizes {
+  @each $direction in $directions {
+    .push#{$direction}#{$size} {
+      margin#{$direction}: $value;
+    }
+    .pad#{$direction}#{$size} {
+      padding#{$direction}: $value;
+    }
+  }
+}
