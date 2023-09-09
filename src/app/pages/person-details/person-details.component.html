@@ -1,0 +1,16 @@
+<button mat-icon-button [routerLink]="['/']">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<div *ngIf="person$ | async as person" class="push">
+  <h1>
+    {{ person?.properties?.name }}
+  </h1>
+  <b>Properties:</b>
+  <div>ID: {{ person.uid }}</div>
+  <div>Height: {{ person?.properties?.height }}</div>
+  <div>Mass: {{ person?.properties?.mass }}</div>
+  <div>Hair color: {{ person?.properties?.hair_color }}</div>
+  <div>Skin color: {{ person?.properties?.skin_color }}</div>
+  <a>Homeworld </a>{{ person?.properties?.homeworld }}
+</div>
